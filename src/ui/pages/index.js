@@ -1,3 +1,4 @@
 export * from "./LoginPage"
 export * from "./SignUpPage"
-export * from "./MovieList"
+export * from "./MovieListPage"
+export * from "./SearchPage"

@@ -15,7 +15,6 @@ export const getMovieDetails = async (id) => {
         }
     
         const data = await response.json();
-        console.log(data.credits.cast)
         return {
             sinopsis: data.overview,
             date: data.release_date,

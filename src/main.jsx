@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { LoginPage, SignUpPage, MovieList } from "./ui/pages/index";
+import { LoginPage, SignUpPage, MovieListPage, SearchPage } from "./ui/pages/index";
 import { NavBar } from "./ui/components/index";
 import MovieDetails from "./ui/pages/MovieDetails";
 
@@ -16,12 +16,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/movieList",
-    element: <MovieList />,
+    element: <MovieListPage />,
   },
   {
     path: "/movielist/:id",
     element: <MovieDetails />,
   },
+  {
+    path: "/search",
+    element: <SearchPage/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -43,7 +43,7 @@ export const LoginForm = () => {
         Login
       </Link>
       <p>
-        Need to create an account? <Link to="/signUp">Sign Up</Link>
+        Need to create an account? <a href="#">Sign Up</a>
       </p>
     </Form>
   );
