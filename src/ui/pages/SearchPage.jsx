@@ -28,6 +28,15 @@ const SearchContainer = styled.section`
   button {
     margin: 0;
   }
+
+  @media screen and (max-width: 800px) {
+    padding-inline: 0;
+  
+    form {
+      flex-direction: column;
+      margin-inline: 12px;
+    }
+  }
 `;
 
 const MovieContainer = styled.div`
