@@ -15,6 +15,12 @@ const Header = styled.header`
     text-decoration: none;
     font-size: 18px;
   }
+
+  @media screen and (max-width: 800px) {
+    .logo {
+      font-size: 20px;
+    }
+  }
 `;
 
 export const NavBar = () => {

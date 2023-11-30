@@ -31,10 +31,15 @@ const MovieDetailsContainer = styled.section`
     inline-size: 150px;
   }
 
+  .movieDescription button:active {
+    transform: scale(0.95);
+  }
+
   .backButton {
     inline-size: 130px;
     margin-inline-start: 30px;
   }
+
 
   @media screen and (max-width: 800px) {
     block-size: auto;
