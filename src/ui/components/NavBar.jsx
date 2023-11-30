@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = styled.header`
   background: linear-gradient(66.81deg, #0185ff -1.55%, #36d1dc 101.74%);
@@ -24,34 +25,13 @@ export const NavBar = () => {
       </a>
 
       <div className="">
-        <a href="/movieList">Catalgue</a>
+        <Link to="/movieList">Catalgue</Link>
 
-        <a className="mx-4" href="/search">
+        <Link className="mx-4" to="/search">
           Search
-        </a>
+        </Link>
       </div>
 
-      {/*     <div className="dropdown userMenu">
-        
-        <button
-          className="btn btn-primary dropdown-toggle "
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img src="/public/assets/avatar.jpg" alt="User Image" width="28" height="28" className="rounded rounded-4a pl-4" />
-          John Doe
-        </button>
-
-        <ul className="dropdown-menu">
-          <li>
-            <a href="/" className="dropdown-item" >
-              Logout
-            </a>
-          </li>
-        </ul>
-      </div> */}
     </Header>
   );
 };

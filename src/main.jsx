@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { LoginPage, SignUpPage, MovieListPage, SearchPage } from "./ui/pages/index";
-import { NavBar } from "./ui/components/index";
 import MovieDetails from "./ui/pages/MovieDetails";
 
 const router = createBrowserRouter([
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <NavBar />
+    
     <RouterProvider router={router} />
   </React.StrictMode>
 );

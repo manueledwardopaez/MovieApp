@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { getMovieByName } from "../../data/getMovieByName";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { NavBar } from "../components/NavBar";
 
 const SearchContainer = styled.section`
   display: flex;
@@ -72,45 +73,49 @@ export const SearchPage = () => {
   }
 
   return (
-    <SearchContainer>
-      <h1 className="text-center">Search a Movie</h1>
-      <form onSubmit={(event) => onSubmit(event)}>
-        <input
-          type="text"
-          placeholder="Search a Movie"
-          className="form-control"
-          name="searchText"
-          autoComplete="off"
-          value={movieName}
-          onChange={onInputChange}
-        />
+    <>
+      <NavBar />
 
-        <button className="btn btn-outline-primary">Search</button>
-      </form>
+      <SearchContainer>
+        <h1 className="text-center">Search a Movie</h1>
+        <form onSubmit={(event) => onSubmit(event)}>
+          <input
+            type="text"
+            placeholder="Search a Movie"
+            className="form-control"
+            name="searchText"
+            autoComplete="off"
+            value={movieName}
+            onChange={onInputChange}
+          />
 
-      {/*       {movieList.length === 0 && <p>No se encontraron resultados.</p>} */}
+          <button className="btn btn-outline-primary">Search</button>
+        </form>
 
-      <MovieContainer>
-        {movieList.map((movie) => (
-          <div
-            key={movie.id}
-            className="border border-5 rounded animate__animated  animate__fadeIn"
-          >
-            <Link to={`/movielist/${movie.id}`}>
-              <img
-                loading="lazy"
-                width="100%"
-                height="100%"
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                onClick={(e) => {
-                  console.log(e.target);
-                }}
-                alt={movie.title}
-              />
-            </Link>
-          </div>
-        ))}
-      </MovieContainer>
-    </SearchContainer>
+        {/*       {movieList.length === 0 && <p>No se encontraron resultados.</p>} */}
+
+        <MovieContainer>
+          {movieList.map((movie) => (
+            <div
+              key={movie.id}
+              className="border border-5 rounded animate__animated  animate__fadeIn"
+            >
+              <Link to={`/movielist/${movie.id}`}>
+                <img
+                  loading="lazy"
+                  width="100%"
+                  height="100%"
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  onClick={(e) => {
+                    console.log(e.target);
+                  }}
+                  alt={movie.title}
+                />
+              </Link>
+            </div>
+          ))}
+        </MovieContainer>
+      </SearchContainer>
+    </>
   );
 };
