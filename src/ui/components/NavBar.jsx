@@ -26,9 +26,9 @@ const Header = styled.header`
 export const NavBar = () => {
   return (
     <Header className="d-flex justify-content-between align-items-center px-4">
-      <a className="m-0 logo" href="/">
+      <Link className="m-0 logo" to="/">
         MovieApp
-      </a>
+      </Link>
 
       <div className="">
         <Link to="/movieList">Catalgue</Link>
