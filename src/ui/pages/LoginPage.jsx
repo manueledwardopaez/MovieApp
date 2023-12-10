@@ -4,7 +4,7 @@ import { NavBar } from "../components";
 const Section = styled.section`
   display: flex;
   justify-content: space-between;
-  /* block-size: calc(100vh - 120px); */
+  block-size: calc(100vh - 120px); 
   background: linear-gradient(66.81deg, #0185ff -1.55%, #36d1dc 101.74%);
   background: #19253b;
   padding-inline: 120px;
@@ -14,6 +14,7 @@ const Section = styled.section`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    block-size: auto;
   }
 `;
 

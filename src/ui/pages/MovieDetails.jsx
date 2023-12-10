@@ -41,7 +41,7 @@ const MovieDetailsContainer = styled.section`
   }
 
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     block-size: auto;
 
     .infoContainer {
