@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { getMovieByName } from "../../data/getMovieByName";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 
 const SearchContainer = styled.section`
   display: flex;
   flex-direction: column;
-  /* block-size: calc(100vh - 120px); */
   background-color: #19253b;
   color: white;
   padding-block: 80px;
   padding-inline: 30px;
+  min-height: 100vh;
+  block-size: 100%;
 
   h1 {
     margin-block-end: 40px;
@@ -56,43 +57,52 @@ const MovieContainer = styled.div`
     opacity: 0.7;
   }
 
-
   @media screen and (max-width: 800px) {
     padding-inline: 0;
   }
 `;
 
 export const SearchPage = () => {
-  const [movieList, setMovieList] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const query = queryParams.get("query") || "";
 
-  const [movieName, setMovieName] = useState("");
+  const [movieList, setMovieList] = useState([]);
+  const [movieName, setMovieName] = useState(query);
+
+  useEffect(() => {
+    if (query) {
+      fetchMovies(query);
+    }
+  }, [query]); 
+
+  const fetchMovies = async (name) => {
+    try {
+      const { results } = await getMovieByName({ name });
+      setMovieList(results || []);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+      setMovieList([]);
+    }
+  };
 
   const onInputChange = ({ target }) => {
     setMovieName(target.value);
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    try {
-      const { results } = await getMovieByName({ name: movieName });
-      setMovieList(results);
-      console.log(results);
-    } catch (error) {
-      console.error("Error fetching movie details:", error);
-    }
+    navigate(`?query=${movieName}`);
+    fetchMovies(movieName);
   };
-
-  if (!movieList) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     <>
       <NavBar />
-
       <SearchContainer>
         <h1 className="text-center">Search a Movie</h1>
-        <form onSubmit={(event) => onSubmit(event)}>
+        <form onSubmit={onSubmit}>
           <input
             type="text"
             placeholder="Search a Movie"
@@ -102,27 +112,20 @@ export const SearchPage = () => {
             value={movieName}
             onChange={onInputChange}
           />
-
           <button className="btn btn-outline-primary">Search</button>
         </form>
 
-        {/*       {movieList.length === 0 && <p>No se encontraron resultados.</p>} */}
+        {movieList.length === 0 && query && <p>No se encontraron resultados.</p>}
 
         <MovieContainer>
           {movieList.map((movie) => (
-            <div
-              key={movie.id}
-              className="border border-5 rounded animate__animated  animate__fadeIn"
-            >
-              <Link to={`/movielist/${movie.id}`}>
+            <div key={movie.id} className="border border-5 rounded animate__animated animate__fadeIn">
+              <Link to={`/search/${movie.id}`}>
                 <img
                   loading="lazy"
                   width="100%"
                   height="100%"
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  onClick={(e) => {
-                    console.log(e.target);
-                  }}
                   alt={movie.title}
                 />
               </Link>

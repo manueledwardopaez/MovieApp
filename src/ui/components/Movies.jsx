@@ -48,15 +48,12 @@ export const Movies = () => {
           key={movie.id}
           className="border border-5 rounded animate__animated  animate__fadeIn"
         >
-          <Link to={`/movielist/${movie.id}`}>
+          <Link to={`/search/${movie.id}`}>
             <img
               loading="lazy"
               width="100%"
               height="100%"
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              onClick={(e) => {
-                console.log(e.target);
-              }}
               alt={movie.title}
             />
           </Link>

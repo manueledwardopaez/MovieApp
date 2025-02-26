@@ -1,29 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { LoginPage, SignUpPage, MovieListPage, SearchPage } from "./ui/pages/index";
+import { MovieListPage, SearchPage, NotFoundPage } from "./ui/pages";
 import MovieDetails from "./ui/pages/MovieDetails";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUpPage />,
-  },
-  {
-    path: "/movieList",
     element: <MovieListPage />,
   },
   {
-    path: "/movielist/:id",
+    path: "/search",
+    element: <SearchPage />,
+  },
+  {
+    path: "/search/:id",
     element: <MovieDetails />,
   },
   {
-    path: "/search",
-    element: <SearchPage/>
+    path: "*",
+    element: <NotFoundPage />,
   }
 ]);
 

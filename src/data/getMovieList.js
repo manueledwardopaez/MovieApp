@@ -1,10 +1,13 @@
 export const getMovieList = async () => {
+
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  
   const options = {
     method: "GET",
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhM2QwMmUwOTlhY2ZjMDc1NjU0Mjk4NjUyYzg1NjgwZiIsInN1YiI6IjY1NWJmZGViMTA5MjMwMDEzOGM3YmU2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dx6u9aWgDnBo64w3Of8LUdM2UBEoei7YTg2ojVqkQTY",
+      API_KEY,
     },
   };
 
@@ -19,7 +22,6 @@ export const getMovieList = async () => {
     }
 
     const data = await response.json();
-    console.log(data)
 
     return {
       results: data.results,
